@@ -1,0 +1,24 @@
+<div>
+  <app-header></app-header>
+  <app-sidebar></app-sidebar>
+  <div class="rounded-lg shadow-lg w-full lg:w-3/4 lg:w-1/2 border-2 lg:ml-64 mt-2">
+    <div class="flex flex-col p-4">
+      <div class="flex flex-col flex-1 justify-center">
+        <h1 class="text-4xl text-center font-thin">Conversaciones</h1>
+        <div class="w-full mt-4">
+          <button (click)='newChat()' class="bg-green-500 p-1 pr-3 pl-3 text-white rounded-full">Nueva conversación</button>
+          <div [class.selected]='chatId === currentChat' (click)='readChat(chatId)'
+               *ngFor='let chatId of chats | async'>
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden my-10">
+              <div class="px-4 py-2">
+                <h1 class="text-gray-900 font-bold text-3xl uppercase">{{chatId}}</h1>
+                <app-chat></app-chat>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
