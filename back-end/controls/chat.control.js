@@ -16,7 +16,9 @@ let manageChats = (http) => {
         })
         socket.on('addChat', chat => {
             let cards = Object.keys(manageData)
+            console.log(cards)
             let numberCards = cards.length + 1
+            console.log(numberCards)
             chat.id = `Conversación ${numberCards}`
             manageData[chat.id] = chat
             safeJoin(chat.id)

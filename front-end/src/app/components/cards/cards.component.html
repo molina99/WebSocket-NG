@@ -1,24 +1,22 @@
-<div>
-  <app-header></app-header>
-  <app-sidebar></app-sidebar>
-  <div class="rounded-lg shadow-lg w-full lg:w-3/4 lg:w-1/2 border-2 lg:ml-64 mt-2">
-    <div class="flex flex-col p-4">
-      <div class="flex flex-col flex-1 justify-center">
-        <h1 class="text-4xl text-center font-thin">Conversaciones</h1>
-        <div class="w-full mt-4">
-          <button (click)='newChat()' class="bg-green-500 p-1 pr-3 pl-3 text-white rounded-full">Nueva conversación</button>
-          <div [class.selected]='chatId === currentChat' (click)='readChat(chatId)'
-               *ngFor='let chatId of chats | async'>
-            <div class="bg-white shadow-lg rounded-lg overflow-hidden my-10">
-              <div class="px-4 py-2">
-                <h1 class="text-gray-900 font-bold text-3xl uppercase">{{chatId}}</h1>
-                <app-chat></app-chat>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
+<app-header></app-header>
+<div class="md:w-1/5 bg-blue-300 px-2 absolute border-t h-full lg:flex hidden">
+  <div
+    class="md:flex-col md:items-stretch md:min-h-full md:flex-no-wrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
+    <div
+      class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded">
+      <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+        <li class="ml-12 my-4 text-gray-800 hover:text-gray-300">
+          <a class="cursor-pointer border rounded-full border-white py-2 px-6 bg-teal-500 hover:bg-teal-300 text-white" (click)='newChat()'>+ AGREGAR</a>
+        </li>
+        <li class="items-center mr-8">
+          <ul>
+            <li *ngFor='let chatId of chats | async' class="mx-8 text-gray-800 hover:text-gray-300 cursor-pointer">
+              <span [class.selected]='chatId == currentChat' (click)='readChat(chatId)'>{{chatId}}</span>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
+<app-chat></app-chat>

@@ -1,1 +1,17 @@
-<textarea class="w-full" [(ngModel)]='chat.chat' (keyup)='editChat()' placeholder="Escribe el mensaje" rows="5"></textarea>
+<div>
+  <div class="flex flex-col items-center flex-1 h-full justify-center px-4 sm:px-0">
+    <div class="flex rounded-lg shadow-lg w-full lg:w-3/4 lg:w-1/2 border-2 lg:ml-64 mt-10">
+      <div class="flex flex-col w-full p-4">
+        <div class="flex flex-col flex-1 justify-center">
+          <div class="w-full mt-4">
+            <h2 class="text-center text-4xl font-thin">
+              Sala de conversaciones
+            </h2>
+            <textarea class="w-full" *ngIf="chat.id != ''" [(ngModel)]='chat.chat' (keyup)='editChat()' placeholder="Escribe el mensaje"
+                      rows="15"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -11,6 +11,7 @@ import {HeaderComponent} from './components/header/header.component';
 import {ChatComponent} from './components/chat/chat.component';
 import {CardsComponent} from './components/cards/cards.component';
 
+// const config: SocketIoConfig = {url: 'https://localhost:3500', options: {}};
 const config: SocketIoConfig = {url: 'http://localhost:3500', options: {}};
 
 @NgModule({
