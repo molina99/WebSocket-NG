@@ -17,10 +17,11 @@ export class PermissionsService {
   }
 
   decodeToken(token: string): boolean {
+    debugger
     const decoded = jwt_decode(token);
     if (decoded) {
       this.token = token || null;
-      this.userLogin = decoded.data || null;
+      this.userLogin = decoded.email || null;
       // delete this.userLogin.password;
       return true;
     } else {

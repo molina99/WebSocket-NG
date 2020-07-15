@@ -10,9 +10,9 @@ import {SidebarComponent} from './components/sidebar/sidebar.component';
 import {HeaderComponent} from './components/header/header.component';
 import {ChatComponent} from './components/chat/chat.component';
 import {CardsComponent} from './components/cards/cards.component';
-import { LoginComponent } from './components/login/login.component';
+import {LoginComponent} from './components/login/login.component';
 
-const config: SocketIoConfig = {url: 'https://localhost:3500', options: {}};
+import {SocketJwtService} from './services/socket-jwt.service';
 
 @NgModule({
   declarations: [
@@ -28,9 +28,9 @@ const config: SocketIoConfig = {url: 'https://localhost:3500', options: {}};
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    SocketIoModule.forRoot(config)
+    SocketIoModule
   ],
-  providers: [],
+  providers: [SocketJwtService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

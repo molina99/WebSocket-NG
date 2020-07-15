@@ -10,11 +10,11 @@ let manageChats = (https) => {
     //     },
     //     handshake: true
     // }))
-    // io.use(socketJwt.authorize({
-    //         secret: process.env.KEY_JWT,
-    //         handshake: true,
-    //     })
-    // );
+    io.use(socketJwt.authorize({
+            secret: process.env.KEY_JWT,
+            handshake: true,
+        })
+    );
     const manageData = {}
     io.on('connection', socket => {
         let previousId

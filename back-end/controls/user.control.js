@@ -11,9 +11,9 @@ let loginUser = (req, res) => {
     }
     let user = req.body
     console.log(req.body)
-    console.log(user.user.email)
-    if (user.user.email === userDefault.email) {
-        if (user.user.password === userDefault.password) {
+    console.log(user.email)
+    if (user.email === userDefault.email) {
+        if (user.password === userDefault.password) {
             let token = jwt.sign(user, process.env.KEY_JWT, {
                 algorithm: 'HS256',
                 expiresIn: parseInt(process.env.TIME)

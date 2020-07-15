@@ -31,30 +31,33 @@ export class LoginComponent implements OnInit {
     };
   }
 
-  login() {
-    const data = {
-      user: {
-        email: this.dataLogin.email,
-        password: this.dataLogin.password
-      }
-    };
-    this.loginService.login(data).subscribe((res: DataRx) => {
+  login(): void {
+
+    // const data = {
+    //   user: {
+    //     email: this.dataLogin.email,
+    //     password: this.dataLogin.password
+    //   }
+    // };
+    // this.dataLogin = {
+    //   email: this.dataLogin.email,
+    //   password: this.dataLogin.password
+    // };
+    // console.log(data);
+    this.loginService.login(this.dataLogin).subscribe((res: DataRx) => {
       console.log(res.token);
-      // if (res.transaction) {
-      if (this.permissionsService.decodeToken(res.token)) {
-        console.log(5);
-        this.router.navigate(['/cards']);
-        // console.log(this.permissionsService.obtainUserLogin());
+      debugger
+      if (res.ok) {
+        if (this.permissionsService.decodeToken(res.token)) {
+          sessionStorage.setItem('token', this.permissionsService.obtainToken());
+          this.router.navigate(['/cards']);
+          console.log(this.permissionsService.obtainUserLogin());
+        }
+      } else {
+        this.dataLogin.email = '';
+        this.dataLogin.password = '';
+        alert(res.sms);
       }
-      // } else {
-      //   this.dataLogin.email = '';
-      //   this.dataLogin.password = '';
-      //   alert(res.sms);
-      // }
-    }, error => {
-      this.dataLogin.email = '';
-      this.dataLogin.password = '';
-      console.error(error);
     });
   }
 
