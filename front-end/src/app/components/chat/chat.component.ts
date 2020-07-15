@@ -18,7 +18,9 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this._chatSub = this.chatService.chatCurrent.subscribe(chat => this.chat = chat);
+    this._chatSub = this.chatService.chatCurrent.pipe(
+      startWith({id: '', chat: ''})
+    ).subscribe(chat => this.chat = chat);
   }
 
   ngOnDestroy() {

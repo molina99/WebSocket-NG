@@ -10,7 +10,6 @@ export class PermissionsService {
   dataRx: DataRx;
   private token: string;
   private userLogin: User;
-  private sessionId: string;
 
   constructor() {
     this.token = null;
@@ -22,9 +21,7 @@ export class PermissionsService {
     if (decoded) {
       this.token = token || null;
       this.userLogin = decoded.data || null;
-      this.sessionId = this.userLogin.sessionId || null;
-      delete this.userLogin.password;
-      delete this.userLogin.sessionId;
+      // delete this.userLogin.password;
       return true;
     } else {
       return false;
@@ -41,9 +38,5 @@ export class PermissionsService {
 
   obtainUserLogin(): object {
     return this.userLogin;
-  }
-
-  obtainSessionId(): string {
-    return this.sessionId;
   }
 }

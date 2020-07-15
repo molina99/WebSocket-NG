@@ -1,7 +1,20 @@
 ;
 'use strict'
-let manageChats = (http) => {
-    let io = require('socket.io')(http)
+let manageChats = (https) => {
+    let io = require('socket.io')(https)
+    let socketJwt = require('socketio-jwt')
+    // io.use(socketJwt.authorize({
+    //     secret: (req, decodedToken, callback) => {
+    //         console.log(req._query.sessionID)
+    //         callback(null, req._query.sessionID)
+    //     },
+    //     handshake: true
+    // }))
+    // io.use(socketJwt.authorize({
+    //         secret: process.env.KEY_JWT,
+    //         handshake: true,
+    //     })
+    // );
     const manageData = {}
     io.on('connection', socket => {
         let previousId
@@ -16,9 +29,7 @@ let manageChats = (http) => {
         })
         socket.on('addChat', chat => {
             let cards = Object.keys(manageData)
-            console.log(cards)
             let numberCards = cards.length + 1
-            console.log(numberCards)
             chat.id = `Conversación ${numberCards}`
             manageData[chat.id] = chat
             safeJoin(chat.id)

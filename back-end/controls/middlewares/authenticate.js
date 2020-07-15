@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 
 let authenticate = (req, res, next) => {
     let token = req.headers.authorization || null
-    jwt.verify(token, process.env.KEY_JWT, (err, decode) => {
+    jwt.verify(token, req.body.sessionID, (err, decode) => {
         if (err) {
             return res.status(400).json({
                 data: err,

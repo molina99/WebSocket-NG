@@ -11,7 +11,7 @@ export class SocketJwtService extends Socket {
   constructor(private permissionsService: PermissionsService) {
     super({
       url: environment.API_URL, options: {
-        query: `token=${permissionsService.obtainToken()}&sessionId=${permissionsService.obtainSessionId}`
+        query: `token=${sessionStorage.getItem('token')}`
       }
     });
   }
